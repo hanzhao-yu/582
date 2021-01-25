@@ -16,6 +16,7 @@ def hash_collision(k):
     letters = string.ascii_letters + string.digits + string.punctuation
     x = ''.join(random.choice(letters) for i in range(10)).encode('utf-8')
     y = ''.join(random.choice(letters) for i in range(10)).encode('utf-8')
+    k = k//16 + 1
     while 1:
         hashedX = sha256(x).hexdigest()
         hashedY = sha256(y).hexdigest()
@@ -25,7 +26,3 @@ def hash_collision(k):
         y = ''.join(random.choice(letters) for i in range(10)).encode('utf-8')
     
     return( x, y )
-
-
-
-
