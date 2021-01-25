@@ -16,11 +16,12 @@ def hash_collision(k):
     letters = string.ascii_letters + string.digits + string.punctuation
     x = ''.join(random.choice(letters) for i in range(10)).encode('utf-8')
     y = ''.join(random.choice(letters) for i in range(10)).encode('utf-8')
-    k = k//16 + 1
     while 1:
         hashedX = sha256(x).hexdigest()
+        hashedX = bin(int(hashedX, 16))[2:].zfill(256)
         hashedY = sha256(y).hexdigest()
-        if hashedY[64-k:64] == hashedX[64-k:64]:
+        hashedY = bin(int(hashedY, 16))[2:].zfill(256)
+        if hashedY[256-k:256] == hashedX[256-k:256]:
             break
         x = ''.join(random.choice(letters) for i in range(10)).encode('utf-8')
         y = ''.join(random.choice(letters) for i in range(10)).encode('utf-8')
