@@ -6,7 +6,7 @@ def hash_preimage(target_string):
         print( "Input should be a string of bits" )
         return
     letters = string.ascii_letters + string.digits + string.punctuation
-    k = length(target_string)
+    k = len(target_string)
     nonce = ''.join(random.choice(letters) for i in range(10)).encode('utf-8')
     while 1:
         hashed = sha256(nonce).hexdigest()
