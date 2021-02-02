@@ -1,5 +1,6 @@
 from fastecdsa.curve import secp256k1
 from fastecdsa.keys import export_key, gen_keypair
+from fastecdsa.ecdsa import sign
 
 from fastecdsa import curve, ecdsa, keys
 from hashlib import sha256
@@ -19,4 +20,5 @@ def sign(m):
     z = sha256(m.encode('utf-8'))
     z = int(z.hexdigest(), 16)
     s = ((modinv(k, n) % n) * ((z+r*pk) % n))%n
-    return( public_key, [r,s] )
+
+    return( public_key, (r,s) )
