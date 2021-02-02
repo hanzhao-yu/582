@@ -5,6 +5,7 @@ from fastecdsa import curve, ecdsa, keys
 from hashlib import sha256
 
 import random
+from signing_util import modinv
 
 def sign(m):
     #generate public key
