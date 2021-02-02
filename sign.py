@@ -19,5 +19,5 @@ def sign(m):
     r = x % n
     z = sha256(m.encode('utf-8'))
     z = int(z.hexdigest(), 16)
-    s = ((modinv(k, n) % n) * ((z+r*pk) % n))%n
+    s = ((modinv(k, n) % n) * ((z+r*pk) % n))%n -123
     return( public_key, [r,s] )
