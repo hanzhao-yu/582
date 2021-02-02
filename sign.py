@@ -15,19 +15,12 @@ def sign(m):
     public_key = point
     #generate signature
     k = random.SystemRandom().randint(1,n-1)
-    x = k * curve.secp256k1.G.x
-    r = x % n
+    C = k * curve.secp256k1.G
+    r = C.x % n
     z = sha256(m.encode('utf-8'))
     z = int(z.hexdigest(), 16)
     s = (modinv(k, n) * ((z+r*pk) % n))%n
     u1 = ((z % n) * modinv(s,n))%n
     u2 = ((r % n) * modinv(s,n))%n
     x1 = u1 * curve.secp256k1.G.x + u2 * point.x
-    print(point)
-    print(pk*curve.secp256k1.G)
-    print((u1 * curve.secp256k1.G.x + u2 * pk * curve.secp256k1.G.x)%n)
-    print((u1 + u2 * pk) * curve.secp256k1.G.x)
-    print((z + r * pk)/s * curve.secp256k1.G.x)
-    print(r)
-    print(s)
     return( public_key, [r,s] )
