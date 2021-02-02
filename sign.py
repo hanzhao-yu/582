@@ -13,7 +13,7 @@ def sign(m):
     public_key = point
     #generate signature
     k = random.SystemRandom().randint(1,256)
-    (x,y) = k * point
+    x = k * point.x
     r = x % n
     z = sha256(m)
     s = (modinv(k, n) * ((z+r*pk) % n))%n
