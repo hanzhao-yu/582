@@ -25,4 +25,5 @@ def sign(m):
     x1 = u1 * point.x + u2 * pk * point.x
     print(x1)
     print(r)
+    print(s)
     return( public_key, [r,s] )
