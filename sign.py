@@ -24,6 +24,9 @@ def sign(m):
     u2 = ((r % n) * modinv(s,n))%n
     x1 = u1 * curve.secp256k1.G.x + u2 * point.x
     print(x1%n)
+    print(u1 * curve.secp256k1.G.x + u2 * pk * curve.secp256k1.G.x)
+    print((u1 + u2 * pk) * curve.secp256k1.G.x)
+    print((z + r * pk)/s * curve.secp256k1.G.x)
     print(r)
     print(s)
     return( public_key, [r,s] )
