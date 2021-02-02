@@ -20,7 +20,4 @@ def sign(m):
     z = sha256(m.encode('utf-8'))
     z = int(z.hexdigest(), 16)
     s = (modinv(k, n) * ((z+r*pk) % n))%n
-    u1 = ((z % n) * modinv(s,n))%n
-    u2 = ((r % n) * modinv(s,n))%n
-    x1 = u1 * curve.secp256k1.G.x + u2 * point.x
     return( public_key, [r,s] )
