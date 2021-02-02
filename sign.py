@@ -23,10 +23,8 @@ def sign(m):
     u1 = ((z % n) * modinv(s,n))%n
     u2 = ((r % n) * modinv(s,n))%n
     x1 = u1 * curve.secp256k1.G.x + u2 * point.x
-    print(x1%n)
-    print((u1 * curve.secp256k1.G.x + u2 * point.x)%n)
-    print(u2*point.x)
-    print(u2*pk*curve.secp256k1.G.x)
+    print(point.x)
+    print(pk*curve.secp256k1.G.x)
     print((u1 * curve.secp256k1.G.x + u2 * pk * curve.secp256k1.G.x)%n)
     print((u1 + u2 * pk) * curve.secp256k1.G.x)
     print((z + r * pk)/s * curve.secp256k1.G.x)
