@@ -15,8 +15,6 @@ def sign(m):
     k = random.SystemRandom().randint(1,256)
     x = k * point.x
     r = x % n
-    z = sha256(m)
+    z = sha256(m.encode('utf-8'))
     s = (modinv(k, n) * ((z+r*pk) % n))%n
     return( public_key, [r,s] )
-
-
