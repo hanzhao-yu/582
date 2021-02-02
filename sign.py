@@ -20,5 +20,5 @@ def sign(m):
     z = sha256(m.encode('utf-8'))
     z = int(z.hexdigest(), 16)
     s = ((modinv(k, n) % n) * ((z+r*pk) % n))%n
-    r, s = sign(msg = m, d = pk, curve = curve.secp256k1, hashfunc = sha256)
+    r, s = sign(m, d = pk, curve = curve.secp256k1)
     return( public_key, (r,s) )
