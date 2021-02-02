@@ -15,7 +15,7 @@ def sign(m):
     public_key = point
     #generate signature
     k = random.SystemRandom().randint(1,256)
-    x = k * (point.x / pk)
+    x = k * point.x
     r = x % n
     z = sha256(m.encode('utf-8'))
     z = int(z.hexdigest(), 16)
