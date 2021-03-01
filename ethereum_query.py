@@ -18,7 +18,6 @@ def getTransaction(tx):
 # Return the gas price used by a particular transaction,
 #   tx is the transaction
 def getGasPrice(tx):
-    tx = getTransaction(tx)
     gasPrice = tx.gasPrice #YOUR CODE HERE
     return gasPrice
 
