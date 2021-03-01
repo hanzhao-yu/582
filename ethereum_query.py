@@ -19,7 +19,7 @@ def getGasPrice(tx):
 
 def getGas(tx):
     tx = w3.eth.getTransactionReceipt(tx)
-    gas = tx.gas #YOUR CODE HERE
+    gas = tx.gasUsed #YOUR CODE HERE
     return gas
 
 def getTransactionCost(tx):
