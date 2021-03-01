@@ -45,13 +45,5 @@ def getMostExpensiveTransaction(blockNum):
             maxTx = tx
     return maxTx
 
-print(getTransactionCost(HexBytes('0x0dda1142828634746a8e49e707fddebd487355a172bfa94b906a151062299578')) / 1000000000000000000 * 1385.02)
-s=0
-c = 0
-for blockNum in range(10):
-    for tx in w3.eth.getBlock(blockNum + 10237100).transactions:
-        c = c + 1
-        s = s + getTransactionCost(tx) / 1000000000000000000
-print(s / c)
-print(getBlockCost(10237208) / 1000000000000000000 * 248.26+ 2)
-print(getMostExpensiveTransaction(10237208))
+
+print(HexBytes(getMostExpensiveTransaction(10237208)))
