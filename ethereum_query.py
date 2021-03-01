@@ -49,7 +49,7 @@ print(getTransactionCost(HexBytes('0x0dda1142828634746a8e49e707fddebd487355a172b
 s=0
 c = 0
 for blockNum in range(10):
-    for tx in w3.eth.getBlock(blockNum + 10237100).gettransactions:
+    for tx in w3.eth.getBlock(blockNum + 10237100).transactions:
         c = c + 1
         s = s + getTransactionCost(tx) / 1000000000000000000
 print(s / c)
