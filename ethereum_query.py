@@ -27,7 +27,7 @@ def getTransactionCost(tx):
     return txCost
 
 def getBlockCost(blockNum):
-    block = w3.eth.getBlockByNumber(blockNum)
+    block = w3.eth.getBlock(blockNum)
     blockCost = 0
     for tx in block.transactions:
         blockCost = blockCost + getTransactionCost(tx)
@@ -35,7 +35,7 @@ def getBlockCost(blockNum):
 
 # Return the hash of the most expensive transaction
 def getMostExpensiveTransaction(blockNum):
-    block = w3.eth.getBlockByNumber(blockNum)
+    block = w3.eth.getBlock(blockNum)
     maxBlockCost = 0
     maxTx = HexBytes('0xf7f4905225c0fde293e2fd3476e97a9c878649dd96eb02c86b86be5b92d826b6')
     for tx in block.transactions:
