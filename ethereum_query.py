@@ -46,4 +46,4 @@ def getMostExpensiveTransaction(blockNum):
     return maxTx
 
 
-print(HexBytes(getMostExpensiveTransaction(10237208)))
+print(HexBytes(b"\xca\x8f\x8c1\\\x8blH\xce\xe0gVw\xb7\x86\xd1\xba\xbergs\x82\x9aX\x8e\xfaP\x0bq\xcb\xdbe;"))
