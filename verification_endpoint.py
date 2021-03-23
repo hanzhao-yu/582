@@ -14,14 +14,12 @@ def verify():
     content = request.get_json(silent=True)
 
     sig = content["sig"]
-    pk = content["payload"]["pk"]
-    msg = content["payload"]["message"]
-    platform = content["payload"]["platform"]
+    pk = content["payload"][0]
+    msg = content["payload"][1]
+    platform = content["payload"][2]
     result = True
     if platform == 'Ethereum':
         eth_encoded_msg = eth_account.messages.encode_defunct(text=msg)
-        print(eth_account.Account.recover_message(eth_encoded_msg,signature=sig))
-        print(pk)
         if eth_account.Account.recover_message(eth_encoded_msg,signature=sig) == pk:
             result = True
         else:
