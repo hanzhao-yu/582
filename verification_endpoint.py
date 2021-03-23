@@ -22,17 +22,17 @@ def verify_alg(sig, pk, msg):
     return False
 
 def verify():
-    content = request.get_json(silent=True)
-    content = json.loads(content)
-    sig = content["sig"]
-    pk = content["payload"]["pk"]
-    msg = content["payload"]["message"]
-    platform = content["payload"]["platform"]
-    result = True
-    if platform == 'Ethereum':
-        result = verify_eth(sig, pk, msg)
-    else:
-        result = verify_alg(sig, pk, msg)
+#    content = request.get_json(silent=True)
+#    content = json.loads(content)
+#    sig = content["sig"]
+#    pk = content["payload"]["pk"]
+#    msg = content["payload"]["message"]
+#    platform = content["payload"]["platform"]
+#    result = True
+#    if platform == 'Ethereum':
+#        result = verify_eth(sig, pk, msg)
+#    else:
+#        result = verify_alg(sig, pk, msg)
     #Check if signature is valid
     result = True
     return jsonify(result)
