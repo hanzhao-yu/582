@@ -24,13 +24,14 @@ def verify():
             result = True
         else:
             result = False
+        return 1
     else:
         if algosdk.util.verify_bytes(msg.encode('utf-8'),sig,pk):
             result = True
         else:
             result = False
     #Check if signature is valid
-    return jsonify(content["payload"]["message"])
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(port='5002')
