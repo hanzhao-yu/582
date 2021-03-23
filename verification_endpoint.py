@@ -10,29 +10,25 @@ app.url_map.strict_slashes = False
 
 @app.route('/verify', methods=['GET','POST'])
 
-def verify_et(sig, pk, msg):
-    eth_encoded_msg = eth_account.messages.encode_defunct(text=msg)
-    if eth_account.Account.recover_message(eth_encoded_msg,signature=sig) == pk:
-        return True
-    return False
-
-def verify_al(sig, pk, msg):
-    if algosdk.util.verify_bytes(msg.encode('utf-8'),sig,pk):
-        return True
-    return False
-
 def verify():
-#    content = request.get_json(silent=True)
-#    content = json.loads(content)
-#    sig = content["sig"]
-#    pk = content["payload"]["pk"]
-#    msg = content["payload"]["message"]
-#    platform = content["payload"]["platform"]
-#    result = True
-#    if platform == 'Ethereum':
-#        result = verify_eth(sig, pk, msg)
-#    else:
-#        result = verify_alg(sig, pk, msg)
+    content = request.get_json(silent=True)
+    content = json.loads(content)
+    sig = content["sig"]
+    pk = content["payload"]["pk"]
+    msg = content["payload"]["message"]
+    platform = content["payload"]["platform"]
+    result = True
+    if platform == 'Ethereum':
+        eth_encoded_msg = eth_account.messages.encode_defunct(text=msg)
+        if eth_account.Account.recover_message(eth_encoded_msg,signature=sig) == pk:
+            result = True
+        else:
+            result = False
+    else:
+        if algosdk.util.verify_bytes(msg.encode('utf-8'),sig,pk):
+            result = True
+        else:
+            result = False
     #Check if signature is valid
     result = True
     return jsonify(result)
