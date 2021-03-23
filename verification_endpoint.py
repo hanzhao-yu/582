@@ -30,7 +30,6 @@ def verify():
         else:
             result = False
     #Check if signature is valid
-    result = True
     return jsonify(result)
 
 if __name__ == '__main__':
