@@ -22,12 +22,12 @@ def verify_alg(sig, pk, msg):
 
 def verify():
     content = request.get_json(silent=True)
-
-    sig = content.sig
-    pk = content.payload.pk
-    msg = content.payload.message
-    platform = content.payload.platform
-
+    content = json.loads(content)
+    sig = content["sig"]
+    pk = content["payload"]["pk"]
+    msg = content["payload"]["message"]
+    platform = content["payload"]["platform"]
+    result = True
     if platform == 'Ethereum':
         result = verify_eth(sig, pk, msg)
     else:
