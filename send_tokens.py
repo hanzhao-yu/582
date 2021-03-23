@@ -3,7 +3,6 @@
 from algosdk.v2client import algod
 from algosdk import mnemonic
 from algosdk import transaction
-from algosdk import algod as alg
 
 #Connect to Algorand node maintained by PureStake
 #Connect to Algorand node maintained by PureStake
@@ -28,7 +27,7 @@ def send_tokens( receiver_pk, tx_amount ):
     tx = transaction.PaymentTxn(sender=sender_pk, fee=tx_fee, first=first_valid_round, last=last_valid_round, gh=gen_hash, receiver=receiver_pk, amt=tx_amount, )
     signed = tx.sign('ce52D6X4JeHmIiAoM3CG5PKQN1ib5RCcHkplK57JM/CsF00WHS15YEe/d9M4zweFyJKahU1O8PipxtLskFtpkw==')
     txid = tx.get_txid()
-    alg.send_transaction(txn=signed)
+    acl.send_transaction(txn=signed)
     return sender_pk, txid
 
 # Function from Algorand Inc.
