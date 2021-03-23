@@ -28,7 +28,7 @@ def verify():
     msg = content.payload.message
     platform = content.payload.platform
 
-    if platform == 'Ethereum:
+    if platform == 'Ethereum':
         result = verify_eth(sig, pk, msg)
     else:
         result = verify_alg(sig, pk, msg)
