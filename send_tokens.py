@@ -25,7 +25,7 @@ def send_tokens( receiver_pk, tx_amount ):
 
     sender_pk = 'VQLU2FQ5FV4WAR57O7JTRTYHQXEJFGUFJVHPB6FJY3JOZEC3NGJY3W42KE'
     tx = transaction.PaymentTxn(sender=sender_pk, fee=tx_fee, first=first_valid_round, last=last_valid_round, gh=gen_hash, receiver=receiver_pk, amt=tx_amount, )
-    signed = tx.sign('ce52D6X4JeHmIiAoM3CG5PKQN1ib5RCcHkplK57JM/CsF00WHS15YEe/d9M4zweFyJKahU1O8PipxtLskFtpkw==')
+    signed = tx.sign(txn='ce52D6X4JeHmIiAoM3CG5PKQN1ib5RCcHkplK57JM/CsF00WHS15YEe/d9M4zweFyJKahU1O8PipxtLskFtpkw==')
     txid = tx.get_txid()
     algod.send_transaction(signed)
     return sender_pk, txid
