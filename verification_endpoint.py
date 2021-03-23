@@ -24,7 +24,6 @@ def verify():
             result = True
         else:
             result = False
-        return 1
     else:
         if algosdk.util.verify_bytes(msg.encode('utf-8'),sig,pk):
             result = True
