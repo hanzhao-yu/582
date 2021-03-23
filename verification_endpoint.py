@@ -14,9 +14,9 @@ def verify():
     content = request.get_json(silent=True)
 
     sig = content["sig"]
-    pk = content["payload"][0]
-    msg = content["payload"][1]
-    platform = content["payload"][2]
+    pk = content["payload"]["pk"]
+    msg = content["payload"]["message"]
+    platform = content["payload"]["platform"]
     result = True
     if platform == 'Ethereum':
         eth_encoded_msg = eth_account.messages.encode_defunct(text=msg)
@@ -30,7 +30,7 @@ def verify():
         else:
             result = False
     #Check if signature is valid
-    return jsonify(result)
+    return jsonify(content["payload"]["message"])
 
 if __name__ == '__main__':
     app.run(port='5002')
