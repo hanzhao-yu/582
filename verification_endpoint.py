@@ -10,13 +10,13 @@ app.url_map.strict_slashes = False
 
 @app.route('/verify', methods=['GET','POST'])
 
-def verify_eth(sig, pk, msg):
+def verify_et(sig, pk, msg):
     eth_encoded_msg = eth_account.messages.encode_defunct(text=msg)
     if eth_account.Account.recover_message(eth_encoded_msg,signature=sig) == pk:
         return True
     return False
 
-def verify_alg(sig, pk, msg):
+def verify_al(sig, pk, msg):
     if algosdk.util.verify_bytes(msg.encode('utf-8'),sig,pk):
         return True
     return False
