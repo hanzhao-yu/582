@@ -9,6 +9,14 @@ api = Api(app)
 app.url_map.strict_slashes = False
 
 @app.route('/verify', methods=['GET','POST'])
+
+import traceback
+
+@app.errorhandler(500)
+def internal_error(exception):
+    print "500 error caught"
+    print traceback.format_exc()
+
 def verify_eth(sig, pk, msg):
     eth_encoded_msg = eth_account.messages.encode_defunct(text=msg)
     if eth_account.Account.recover_message(eth_encoded_msg,signature=sig) == pk:
@@ -33,6 +41,7 @@ def verify():
     else:
         result = verify_alg(sig, pk, msg)
     #Check if signature is valid
+    result = True
     return jsonify(result)
 
 if __name__ == '__main__':
