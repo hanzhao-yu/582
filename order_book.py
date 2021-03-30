@@ -15,7 +15,7 @@ def process_order(order):
     session.add(order)
     session.commit()
 
-    orders = session.query(Order).filter(Order.filled != "").filter(Order.buy_currency == order.sell_currency).filter(Order.sell_currency == order.buy_currency).all()
+    orders = session.query(Order).filter(Order.filled == None).filter(Order.buy_currency == order.sell_currency).filter(Order.sell_currency == order.buy_currency).all()
     id = -1
     rate = 0
 
