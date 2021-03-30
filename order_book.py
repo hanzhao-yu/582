@@ -28,7 +28,7 @@ def process_order(order):
     if id != -1 and rate < order.buy_amount / order.sell_amount:
         other = session.query(Order).get(id)
         order = session.query(Order).get(order.id)
-        filled = datetime.datetime.now()
+        filled = datetime.now()
         order.filled = filled
         other.filled = filled
         order.counterparty_id = id
