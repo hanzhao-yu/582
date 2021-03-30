@@ -25,7 +25,7 @@ def process_order(order):
             rate = new_rate
             id = candidate.id
 
-    if id != -1 and rate < order.buy_amount / order.sell_amount:
+    if id != -1 and rate >= order.buy_amount / order.sell_amount:
         other = session.query(Order).get(id)
         order = session.query(Order).get(order.id)
         filled = datetime.now()
