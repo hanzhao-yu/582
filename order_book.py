@@ -10,8 +10,10 @@ session = DBSession()
 
 def process_order(order):
     fields = ['sender_pk','receiver_pk','buy_currency','sell_currency','buy_amount','sell_amount']
-    order = Order(**{f:order[f] for f in fields})
-
+    order_tmp = Order(**{f:order[f] for f in fields})
+    if order['creator_id'] != None:
+        order_tmp.creator_id = order['creator_id']
+        order = order_tmp
     session.add(order)
     session.commit()
 
@@ -43,8 +45,8 @@ def process_order(order):
             new_order['sell_currency'] = order.sell_currency
             new_order['buy_amount'] = order.buy_amount - other.sell_amount
             new_order['sell_amount'] = order.sell_amount - other.buy_amount
-            new_Order = session.query(Order).get(process_order(new_order))
-            new_Order.creator_id = order.id
+            new_order['creator_id'] = order.id
+            process_order(new_order)
         else:
             new_order['sender_pk'] = other.sender_pk
             new_order['receiver_pk'] = other.receiver_pk
@@ -52,8 +54,8 @@ def process_order(order):
             new_order['sell_currency'] = other.sell_currency
             new_order['buy_amount'] = other.buy_amount - order.sell_amount
             new_order['sell_amount'] = other.sell_amount - order.buy_amount
-            new_Order = session.query(Order).get(process_order(new_order))
-            new_Order.creator_id = other.id
+            new_order['creator_id'] = other.id
+            process_order(new_order)
         session.commit()
 
     return order.id
