@@ -46,7 +46,7 @@ def process_order(order):
             new_order['sell_amount'] = order.sell_amount - other.buy_amount
             new_order['creator_id'] = order.id
             process_order(new_order)
-        else:
+        elif other.buy_amount > order.sell_amount:
             new_order['sender_pk'] = other.sender_pk
             new_order['receiver_pk'] = other.receiver_pk
             new_order['buy_currency'] = other.buy_currency
