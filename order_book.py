@@ -57,5 +57,3 @@ def process_order(order):
             process_order(new_order)
         
 
-    return order.id
-
