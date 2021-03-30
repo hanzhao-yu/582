@@ -16,5 +16,5 @@ def process_order(order):
     session.commit()
 
 
-    return order.id
+
 
