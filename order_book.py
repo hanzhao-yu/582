@@ -20,7 +20,7 @@ def process_order(order):
     rate = 0
 
     for candidate in orders:
-        new_rate = canditate.sell_amount / candidate.buy_amount
+        new_rate = candidate.sell_amount / candidate.buy_amount
         if new_rate > rate:
             rate = new_rate
             id = candidate.id
