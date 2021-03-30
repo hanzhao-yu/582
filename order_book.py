@@ -10,7 +10,7 @@ session = DBSession()
 
 def process_order(order):
     order_obj = Order( sender_pk=order['sender_pk'],receiver_pk=order['receiver_pk'], buy_currency=order['buy_currency'], sell_currency=order['sell_currency'], buy_amount=order['buy_amount'], sell_amount=order['sell_amount'] )
-    if order['creator_id'] != None:
+    if 'creator_id' in order.keys():
         order_obj.creator_id = order['creator_id']
     order = order_obj
     session.add(order)
