@@ -34,11 +34,11 @@ def log_message(d)
     log_object = Log( message=d)
     g.session.add(log_object)
     g.session.commit()
-    
+
 """
 ---------------- Endpoints ----------------
 """
-    
+
 @app.route('/trade', methods=['POST'])
 def trade():
     if request.method == "POST":
@@ -53,7 +53,7 @@ def trade():
                 print( json.dumps(content) )
                 log_message(content)
                 return jsonify( False )
-        
+
         error = False
         for column in columns:
             if not column in content['payload'].keys():
@@ -63,7 +63,7 @@ def trade():
             print( json.dumps(content) )
             log_message(content)
             return jsonify( False )
-            
+
         #Your code here
         sig = content["sig"]
         pk = content["payload"]["sender_pk"]
@@ -99,7 +99,7 @@ def trade():
 @app.route('/order_book')
 def order_book():
     #Your code here
-    result = 1
+    result = {1}
     #Note that you can access the database session using g.session
     return jsonify(result)
 
