@@ -30,7 +30,7 @@ def shutdown_session(response_or_exc):
 -------- Helper methods (feel free to add your own!) -------
 """
 
-def log_message(d)
+def log_message(d):
     log_object = Log( message=d)
     g.session.add(log_object)
     g.session.commit()
