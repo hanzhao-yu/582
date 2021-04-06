@@ -110,6 +110,7 @@ def order_book():
         cur['sell_currency'] = order.sell_currency
         cur['buy_amount'] = order.buy_amount
         cur['sell_amount'] = order.sell_amount
+        cur['signature'] = order.signature
         list.append(cur)
     result['data'] = list
     #Note that you can access the database session using g.session
