@@ -99,7 +99,19 @@ def trade():
 @app.route('/order_book')
 def order_book():
     #Your code here
-    result = {1}
+    orders = session.query(Order)
+    result = {}
+    list = {}
+    for order in orders:
+        cur = {}
+        cur['sender_pk'] = order.sender_pk
+        cur['receiver_pk'] = order.receiver_pk
+        cur['buy_currency'] = order.buy_currency
+        cur['sell_currency'] = order.sell_currency
+        cur['buy_amount'] = order.buy_amount
+        cur['sell_amount'] = order.sell_amount
+        list.append(cur)
+    result['data'] = list
     #Note that you can access the database session using g.session
     return jsonify(result)
 
