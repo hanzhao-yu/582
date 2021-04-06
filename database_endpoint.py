@@ -101,7 +101,7 @@ def order_book():
     #Your code here
     orders = g.session.query(Order)
     result = {}
-    list = {}
+    list = []
     for order in orders:
         cur = {}
         cur['sender_pk'] = order.sender_pk
