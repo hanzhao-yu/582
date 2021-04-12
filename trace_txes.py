@@ -39,11 +39,11 @@ class TXO:
     def from_tx_hash(cls,tx_hash,n=0):
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         vout = json.loads(tx.get("result")).get("vout")
-        vout = json.loads(vout[n])
-        amount = vout.get("value")
-        owner = json.loads(json.loads(vout.get("scriptPubKey")).get("address"))[0]
-        time = datetime.fromtimestamp(json.loads(tx.get("result")).get("blocktime"))
-        return TXO(tx_hash, n, amount, owner, time)
+#        vout = json.loads(vout[n])
+#        amount = vout.get("value")
+#        owner = json.loads(json.loads(vout.get("scriptPubKey")).get("address"))[0]
+#        time = datetime.fromtimestamp(json.loads(tx.get("result")).get("blocktime"))
+#        return TXO(tx_hash, n, amount, owner, time)
 
 
     def get_inputs(self,d=1):
