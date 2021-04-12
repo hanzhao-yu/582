@@ -56,4 +56,4 @@ class TXO:
     #        current = json.loads(vin[idx])
     #        txo.from_tx_hash(current.get("txid"), current.get("vout"))
     #        self.inputs.append(txo)
-    pass
+        pass
