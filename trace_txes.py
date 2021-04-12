@@ -13,7 +13,7 @@ rpc_connection = AuthServiceProxy("http://%s:%s@%s:%s"%(rpc_user, rpc_password, 
 
 class TXO:
     def __init__(self, tx_hash, n, amount, owner, time ):
-        self.tx_hash = tx_hash 
+        self.tx_hash = tx_hash
         self.n = n
         self.amount = amount
         self.owner = owner
@@ -38,12 +38,12 @@ class TXO:
     @classmethod
     def from_tx_hash(cls,tx_hash,n=0):
         tx = rpc_connection.getrawtransaction(tx_hash,True)
-        self.tx_hash = tx_hash
-        self.n = n
+        cls.tx_hash = tx_hash
+        cls.n = n
         vout = tx.get("result").get("vout")
-        self.amount = vout[n].get("value")
-        self.owner = vout[n].get("address")
-        self.time = datetime.fromtimestamp(tx.get("result").get("blocktime"))
+        cls.amount = vout[n].get("value")
+        cls.owner = vout[n].get("address")
+        cls.time = datetime.fromtimestamp(tx.get("result").get("blocktime"))
 
     def get_inputs(self,d=1):
         tx = rpc_connection.getrawtransaction(self.tx_hash,True)
@@ -54,5 +54,3 @@ class TXO:
             txo = TXO()
             txo.from_tx_hash(vin[idx].get("txid"), vin[idx].get("vout"))
             self.inputs.append(txo)
-
-
