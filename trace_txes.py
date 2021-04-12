@@ -40,7 +40,7 @@ class TXO:
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         vout = tx.get("vout")
         vout = vout[n]
-#        amount = vout.get("value")
+        amount = vout.get("value")
 #        owner = json.loads(json.loads(vout.get("scriptPubKey")).get("address"))[0]
 #        time = datetime.fromtimestamp(json.loads(tx.get("result")).get("blocktime"))
 #        return TXO(tx_hash, n, amount, owner, time)
