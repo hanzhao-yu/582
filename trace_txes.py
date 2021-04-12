@@ -38,7 +38,7 @@ class TXO:
     @classmethod
     def from_tx_hash(cls,tx_hash,n=0):
         tx = rpc_connection.getrawtransaction(tx_hash,True)
-        vout = json.loads(tx.get("result")).get("vout")
+        vout = tx.get("result").get("vout")
 #        vout = json.loads(vout[n])
 #        amount = vout.get("value")
 #        owner = json.loads(json.loads(vout.get("scriptPubKey")).get("address"))[0]
