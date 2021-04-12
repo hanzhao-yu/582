@@ -53,5 +53,5 @@ class TXO:
         idx = 0
         while idx < l and idx < d:
             current = vin[idx]
-            txo = from_tx_hash(current.get("txid"), current.get("vout"))
+            txo = TXO.from_tx_hash(current.get("txid"), current.get("vout"))
             self.inputs.append(txo)
