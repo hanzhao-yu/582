@@ -41,13 +41,15 @@ class TXO:
         cls.tx_hash = tx_hash
         cls.n = n
         vout = tx.get("result").get("vout")
+        vout = json.load(vout)
         cls.amount = vout[n].get("value")
         cls.owner = vout[n].get("address")
         cls.time = datetime.fromtimestamp(tx.get("result").get("blocktime"))
 
     def get_inputs(self,d=1):
         tx = rpc_connection.getrawtransaction(self.tx_hash,True)
-        vin = vout = tx.get("result").get("vin")
+        vin = tx.get("result").get("vin")
+        vin = json.load(vin)
         l = len(vin)
         idx = 0
         while idx < l and idx < d:
