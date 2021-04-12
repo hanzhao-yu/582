@@ -42,8 +42,8 @@ class TXO:
         vout = vout[n]
         amount = vout.get("value")
         owner = vout.get("scriptPubKey").get("addresses")[0]
-#        time = datetime.fromtimestamp(json.loads(tx.get("result")).get("blocktime"))
-#        return TXO(tx_hash, n, amount, owner, time)
+        time = datetime.fromtimestamp(tx.get("time"))
+        return TXO(tx_hash, n, amount, owner, time)
 
 
     def get_inputs(self,d=1):
