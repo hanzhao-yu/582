@@ -40,7 +40,7 @@ class TXO:
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         cls.tx_hash = tx_hash
         cls.n = n
-        vout = tx.get("result").get("vout")
+        vout = json.load(tx.get("result")).get("vout")
 #        vout = tx.get("result").get("vout")
 #        vout = json.load(vout[n])
 #        cls.amount = vout.get("value")
