@@ -55,4 +55,4 @@ class TXO:
             current = vin[idx]
             txo = TXO.from_tx_hash(current.get("txid"), current.get("vout"))
             self.inputs.append(txo)
-            idx++
+            idx = idx + 1
