@@ -38,14 +38,13 @@ class TXO:
     @classmethod
     def from_tx_hash(cls,tx_hash,n=0):
         tx = rpc_connection.getrawtransaction(tx_hash,True)
-        cls.tx_hash = tx_hash
-        cls.n = n
-        vout = json.load(tx.get("result")).get("vout")
-#        vout = tx.get("result").get("vout")
-#        vout = json.load(vout[n])
-#        cls.amount = vout.get("value")
-#        cls.owner = vout.get("address")
-#        cls.time = datetime.fromtimestamp(tx.get("result").get("blocktime"))
+        vout = json.loads(tx.get("result")).get("vout")
+        vout = json.loads(vout[n])
+        amount = vout.get("value")
+        owner = json.loads(json.loads(vout.get("scriptPubKey")).get("address"))[0]
+        time = datetime.fromtimestamp(json.loads(tx.get("result")).get("blocktime"))
+        return TXO(tx_hash, n, amount, owner, time)
+
 
     def get_inputs(self,d=1):
         tx = rpc_connection.getrawtransaction(self.tx_hash,True)
@@ -54,6 +53,6 @@ class TXO:
         idx = 0
         while idx < l and idx < d:
             txo = TXO()
-            current = json.load(vin[idx])
+            current = json.loads(vin[idx])
             txo.from_tx_hash(current.get("txid"), current.get("vout"))
             self.inputs.append(txo)
