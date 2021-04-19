@@ -81,7 +81,7 @@ def fill_order(order,txes=[]):
             new_order['sell_amount'] = other.sell_amount - order.buy_amount
             new_order['creator_id'] = other.id
             process_order(new_order)
-  
+
 def log_message(d):
     log_object = Log( message=d)
     g.session.add(log_object)
@@ -106,14 +106,14 @@ def trade():
                 print( json.dumps(content) )
                 log_message(content)
                 return jsonify( False )
-        
+
         for column in columns:
             if not column in content['payload'].keys():
                 print( f"{column} not received by Trade" )
                 print( json.dumps(content) )
                 log_message(content)
                 return jsonify( False )
-            
+
         #Your code here
         #Note that you can access the database session using g.session
         sig = content["sig"]
@@ -145,12 +145,12 @@ def trade():
             g.session.commit()
         else:
             log_message(msg)
-        
+
         # TODO: Fill the order
         fill_order(content["payload"])
         # TODO: Be sure to return jsonify(True) or jsonify(False) depending on if the method was successful
         return jsonify(result)
-        
+
 
 @app.route('/order_book')
 def order_book():
@@ -168,6 +168,7 @@ def order_book():
         cur['sell_amount'] = order.sell_amount
         cur['signature'] = order.signature
         list.append(cur)
+    result['data'] = list
     #Note that you can access the database session using g.session
     return jsonify(result)
 
